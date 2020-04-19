@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--命名空间是对应接口的包名+类名 -->
+<mapper namespace="com.pjq.dao.LearningTimeDao">
+    <select id="selectTime" parameterType="String" resultType="com.pjq.pojo.LearningTime">
+        select * from learning_time where username=#{username}
+    </select>
+
+    <update id="updateTime">
+        update learning_time
+        <if test="day.equals('monday')">
+            set monday=#{time}
+        </if>
+        <if test="day.equals('tuesday')">
+            set tuesday=#{time}
+        </if>
+        <if test="day.equals('wednesday')">
+            set wednesday=#{time}
+        </if>
+        <if test="day.equals('thursday')">
+            set thursday=#{time}
+        </if>
+        <if test="day.equals('friday')">
+            set friday=#{time}
+        </if>
+        where username=#{username}
+    </update>
+
+    <update id="timeClear">
+        update learning_time set monday=0,tuesday=0,wednesday=0,thursday=0,friday=0 where username=#{username}
+    </update>
+</mapper>

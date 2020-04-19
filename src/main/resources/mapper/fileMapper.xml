@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pjq.dao.FileDao">
+    <insert id="upLoadCourseInfo" parameterType="com.pjq.pojo.Course">
+        insert into course (course_name,teacher,content,subject,price,description,purchased,star)
+        value (#{course_name},#{teacher},#{content},#{subject},#{price},#{description},#{purchased},#{star})
+    </insert>
+
+    <insert id="upLoadCourseContentList" parameterType="com.pjq.pojo.CourseContentList">
+        insert into course_content_list (course_id,course_content_list,sequence)
+        value (#{course_id},#{course_content_list},#{sequence})
+    </insert>
+
+    <insert id="upLoadLecture" parameterType="com.pjq.pojo.Lecture">
+        insert into lecture (course_id,content_list_id,lesson,times,likes,url)
+        value (#{course_id},#{content_list_id},#{lesson},#{times},#{likes},#{url})
+    </insert>
+</mapper>
+

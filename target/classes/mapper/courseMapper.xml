@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pjq.dao.CourseDao">
+    <select id="getAllCourse" resultType="com.pjq.pojo.Course">
+        select * from course
+    </select>
+
+    <select id="selectByCourse" parameterType="String" resultType="com.pjq.pojo.Course">
+        select * from course
+        <where>
+            <if test="course_name!=null">
+                course_name like CONCAT('%',#{course_name},'%')
+            </if>
+            <if test="content!=null">
+                and content like CONCAT('%',#{content},'%')
+            </if>
+            <if test="subject!=null">
+                and subject like CONCAT('%',#{subject},'%')
+            </if>
+        </where>
+    </select>
+
+
+    <select id="selectByUserCourse" parameterType="String" resultType="int">
+        select course_id from my_course where username=#{username}
+    </select>
+
+    <select id="selectDetailCourse" parameterType="int" resultType="com.pjq.pojo.Course">
+        select * from course where id=#{course_id}
+    </select>
+
+    <delete id="deleteByUserCourse">
+        delete  from my_course  where (username=#{username} and course_id=#{course_id})
+    </delete>
+
+    <insert id="insetIntoUserCourse">
+        insert into my_course(username,course_id,progress) value(#{username},#{course_id},0)
+    </insert>
+
+    <update id="updateCourseProgress">
+        update my_course set progress =#{progress} where (username=#{username} and course_id=#{course_id})
+    </update>
+
+    <select id="selectProgress" resultType="double">
+        select progress from my_course where username=#{username} and course_name=#{course_id}
+    </select>
+
+    <select id="findKeyWordCourse" parameterType="String" resultType="com.pjq.pojo.Course">
+        select * from course where course_name like CONCAT('%',#{keyword},'%')
+    </select>
+
+    <select id="selectCourseDescriptionLearn" parameterType="int" resultType="String">
+        select learn from course_description_learn where course_id=#{course_id}
+    </select>
+
+    <select id="selectCourseDescriptionDemand" parameterType="int" resultType="String">
+        select demand from course_description_demand where course_id=#{course_id}
+    </select>
+
+    <select id="selectCourseDerscriptionAudience" parameterType="int" resultType="String">
+        select audience from course_description_audience where course_id=#{course_id}
+    </select>
+
+    <select id="selectCourseContentList" parameterType="int" resultType="com.pjq.pojo.CourseContentList">
+        select * from course_content_list where course_id=#{course_id}
+    </select>
+
+    <select id="selectCourseContent" resultType="com.pjq.pojo.CourseContentList">
+        select * from course_content_list where course_id=#{course_id} and course_content_list=#{course_content_list}
+    </select>
+
+    <select id="selectCourseLecture" parameterType="int" resultType="com.pjq.pojo.Lecture">
+        select * from lecture where course_id=#{course_id}
+    </select>
+
+    <select id="checkCourse" resultType="com.pjq.pojo.Course">
+        select * from course where course_name=#{course_name} and teacher=#{username}
+    </select>
+
+    <select id="selectCourse" resultType="com.pjq.pojo.Course">
+        select * from course where teacher=#{userName}
+    </select>
+
+    <select id="selectTeachingCourses" resultType="com.pjq.pojo.Course">
+
+    </select>
+
+
+</mapper>

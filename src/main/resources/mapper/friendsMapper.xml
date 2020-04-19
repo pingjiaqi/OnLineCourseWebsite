@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pjq.dao.FriendsDao">
+    <select id="getAllFriends" parameterType="String" resultType="com.pjq.pojo.Friends">
+        select * from friends where username=#{username}
+    </select>
+
+    <select id="selectUserFriends" parameterType="String" resultType="com.pjq.pojo.Friends">
+        select * from friends where username=#{username} and friends_name=#{friends_name}
+    </select>
+
+    <insert id="insertIntoFriend" parameterType="String">
+        insert into friends(username,friends_name,status) value (#{username},#{friends_name},"waiting")
+    </insert>
+
+    <insert id="agreedInsertIntoFriend" parameterType="String">
+        insert into friends(username,friends_name,status) value (#{username},#{friends_name},"pass")
+    </insert>
+
+    <update id="responseInsertIntoFriend" parameterType="String">
+        update friends set status="pass" where username=#{username} and friends_name=#{friends_name}
+    </update>
+
+    <update id="rejectInsertIntoFriend" parameterType="String">
+        update friends set status="fail" where username=#{friends_name} and friends_name=#{username}
+    </update>
+
+    <delete id="deleteByUserFriend" parameterType="String">
+        delete from friends where username=#{username} and friends_name=#{friends_name}
+    </delete>
+
+    <delete id="isDeleted" parameterType="String">
+        delete from friends where username=#{friends_name} and friends_name=#{username}
+    </delete>
+
+</mapper>

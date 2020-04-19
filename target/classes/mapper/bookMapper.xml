@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pjq.dao.BookDao">
+<!--    <select id="getAllBooks" resultType="com.pjq.pojo.Book">-->
+<!--        select * from book;-->
+<!--    </select>-->
+
+<!--    <select id="findabook" parameterType="com.pjq.pojo.Book" resultType="com.pjq.pojo.Book">-->
+<!--        select * from book where title=#{title}-->
+<!--    </select>-->
+
+<!--    <select id="showUserBook" parameterType="String" resultType="com.pjq.pojo.Book">-->
+<!--        select * from my_book where username=#{username}-->
+<!--    </select>-->
+
+<!--    <select id="selectByUserBook" parameterType="String" resultType="com.pjq.pojo.Book">-->
+<!--        select title from my_book where username=#{username} and title=#{title}-->
+<!--    </select>-->
+
+<!--    <delete id="deleteByUserBook" parameterType="String">-->
+<!--        delete from my_book where username=#{username} and title=#{title}-->
+<!--    </delete>-->
+
+<!--    <select id="lookOverProgress" parameterType="String" resultType="double">-->
+<!--        select progress from my_book where username=#{username} and course_name=#{title}-->
+<!--    </select>-->
+
+<!--    <update id="updateProgress" parameterType="String">-->
+<!--        update my_book set progress=#{progress} where username=#{username} and title=#{title}-->
+<!--    </update>-->
+
+<!--    <insert id="insertIntoBook" parameterType="String">-->
+<!--        insert into my_book (username,title,progress) values (#{username},#{title},0);-->
+<!--    </insert>-->
+
+</mapper>

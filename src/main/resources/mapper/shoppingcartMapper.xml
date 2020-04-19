@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--命名空间是对应接口的包名+类名 -->
+<mapper namespace="com.pjq.dao.ShoppingCartDao">
+    <insert id="insertIntoShoppingCart">
+        insert into shopping_cart(username,product_id,price,number) value (#{username},#{product_id},#{price},1)
+    </insert>
+
+    <select id="selectShoppingCart" parameterType="String" resultType="com.pjq.pojo.ShoppingCart">
+        select * from shopping_cart where username=#{username}
+    </select>
+
+    <update id="insertIntoDuplicates">
+        update shopping_cart set number=#{number} where username=#{username} and product_id=#{product_id}
+    </update>
+
+    <select id="selectProduct" resultType="com.pjq.pojo.ShoppingCart">
+        select * from shopping_cart where username=#{username}  and product_id=#{product_id}
+    </select>
+
+    <delete id="clearProduct">
+        delete from shopping_cart where username=#{username} and product_id=#{product_id}
+    </delete>
+
+    <update id="cutProduct">
+        update shopping_cart set number=#{number} where username=#{username} and product_id=#{product_id}
+    </update>
+</mapper>

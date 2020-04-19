@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--命名空间是对应接口的包名+类名 -->
+<mapper namespace="com.pjq.dao.UserDao">
+
+    <!--select表示查询,它的id名称必须与DAO层接口的方法名相同,否则无法绑定-->
+    <select id="selectByName" parameterType="String" resultType="com.pjq.pojo.User">
+        select * from user where username=#{username}
+    </select>
+
+    <insert id="insertIntoUser"  parameterType="String">
+        insert into user(username,password,name) value (#{username},#{password},#{name})
+    </insert>
+
+    <update id="updateUserInformation">
+        update user set
+        student_id=#{studentId},
+        real_name=#{name},
+        sex=#{sex},
+        phone=#{phone},
+        description=#{description},
+        email=#{email}
+        where username=#{userName}
+    </update>
+
+    <update id="updateUserAvatar">
+        update user set
+        avatar=#{url}
+        where username=#{username}
+    </update>
+
+    <update id="alertPassword">
+        update user set
+        password=#{password}
+        where username=#{username}
+    </update>
+
+
+</mapper>
